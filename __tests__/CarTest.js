@@ -22,7 +22,7 @@ describe('자동차', () => {
     const carName = 'pobi';
     const car = new Car(carName);
 
-    const number = Car.MIN_NUMBER_TO_MOVE - 1;
+    const number = 3;
     const mockGenerator = { generate: () => number };
 
     car.move(mockGenerator);
@@ -32,10 +32,10 @@ describe('자동차', () => {
     const carName = 'pobi';
     const car = new Car(carName);
 
-    const number = Car.MIN_NUMBER_TO_MOVE;
+    const number = 4;
     const mockGenerator = { generate: () => number };
 
     car.move(mockGenerator);
-    expect(car.getPosition()).toBe(Car.MOVEMENT_DISTANCE);
+    expect(car.getPosition()).toBe(1);
   });
 });
