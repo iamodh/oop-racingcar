@@ -16,6 +16,10 @@ class OutputView {
       `최종 우승자 : ${winners.map((winner) => winner.getName()).join(', ')}`
     );
   }
+
+  printErrorMessage(message) {
+    Console.print(message + '\n');
+  }
 }
 
 export default OutputView;

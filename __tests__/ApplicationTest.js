@@ -48,13 +48,17 @@ describe('자동차 경주', () => {
 
   test('예외 테스트', async () => {
     // given
-    const inputs = ['pobi,javaji', '1'];
+    const logSpy = getLogSpy();
+    const inputs = ['pobi,javaji', '1', 'pobi,java', '1'];
     mockQuestions(inputs);
 
     // when
     const app = new App();
+    await app.run();
 
     // then
-    await expect(app.run()).rejects.toThrow('[ERROR]');
+    await expect(logSpy).toHaveBeenCalledWith(
+      expect.stringContaining('[ERROR]')
+    );
   });
 });
