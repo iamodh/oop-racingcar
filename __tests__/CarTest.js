@@ -1,13 +1,11 @@
 import Car from '../src/Car';
 
 describe('자동차', () => {
-  test('자동차 이름이 빈 값이면 오류가 발생한다.', () => {
-    const carName = ' ';
-    expect(() => new Car(carName)).toThrow('[ERROR]');
-  });
-  test('자동차 이름이 5글자 초과면 오류가 발생한다.', () => {
-    const carName = 'fancycar';
-    expect(() => new Car(carName)).toThrow('[ERROR]');
+  test('자동차 이름이 1글자 미만, 5글자 초과면 오류가 발생한다.', () => {
+    const emptyName = '';
+    const longName = 'fancycar';
+    expect(() => new Car(emptyName)).toThrow('[ERROR]');
+    expect(() => new Car(longName)).toThrow('[ERROR]');
   });
 
   test('자동차의 이름과 현재 위치를 반환한다.', () => {
