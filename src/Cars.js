@@ -1,22 +1,25 @@
+import { CarsCountError, CarsDuplicateError } from './errors/CarsError.js';
+
 class Cars {
   #cars;
-  static Error = {
-    CARS_COUNT: '[ERROR] 자동차는 최소 1대 이상이여야 합니다.',
-    NAME_DUPLICATE: '[ERROR] 자동차 이름은 중복될 수 없습니다.',
+  static COUNT = {
+    MIN: 1,
+    MAX: 5,
   };
+
   constructor(cars) {
     this.#validateCars(cars);
     this.#cars = cars;
   }
 
   #validateCars(cars) {
-    if (cars.length === 0) {
-      throw new Error(Cars.Error.CARS_COUNT);
+    if (cars.length < Cars.COUNT.MIN || cars.length > Cars.COUNT.MAX) {
+      throw new CarsCountError(Cars.COUNT.MIN, Cars.COUNT.MAX);
     }
 
     const names = cars.map((car) => car.getName());
     if (new Set(names).size !== names.length) {
-      throw new Error(Cars.Error.NAME_DUPLICATE);
+      throw new CarsDuplicateError();
     }
   }
 
