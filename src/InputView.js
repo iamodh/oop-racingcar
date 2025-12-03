@@ -1,5 +1,4 @@
 import { Console } from '@woowacourse/mission-utils';
-import Car from './Car.js';
 
 class InputView {
   async getCarNames() {
@@ -14,15 +13,15 @@ class InputView {
 
   #validateCarNames(carNames) {
     carNames.forEach((name) => {
-      if (name === '' || name.length > Car.MAX_NAME_LENGTH) {
-        throw new Error('[ERROR] 유효하지 않은 자동차 이름입니다.');
+      if (name === '') {
+        throw new Error('[ERROR] 자동차 이름에 빈 문자열이 포함되어 있습니다.');
       }
     });
   }
 
   async getTrialCount() {
     const input = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
-    const count = Number(input);
+    const count = Number(input.trim());
     this.#validateTrialCount(count);
 
     return count;
