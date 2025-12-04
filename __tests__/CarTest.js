@@ -12,8 +12,8 @@ describe('자동차', () => {
     const carName = 'pobi';
     const car = new Car(carName);
 
-    expect(car.getName()).toBe(carName);
-    expect(car.getPosition()).toBe(0);
+    expect(car.getStatus().name).toBe(carName);
+    expect(car.getStatus().position).toBe(0);
   });
 
   test('숫자가 4 미만인 경우 움직이지 않는다.', () => {
@@ -24,7 +24,7 @@ describe('자동차', () => {
     const mockGenerator = { generate: () => number };
 
     car.move(mockGenerator);
-    expect(car.getPosition()).toBe(0);
+    expect(car.getStatus().position).toBe(0);
   });
   test('숫자가 4 이상인 경우 한 칸 전진한다.', () => {
     const carName = 'pobi';
@@ -34,6 +34,6 @@ describe('자동차', () => {
     const mockGenerator = { generate: () => number };
 
     car.move(mockGenerator);
-    expect(car.getPosition()).toBe(1);
+    expect(car.getStatus().position).toBe(1);
   });
 });

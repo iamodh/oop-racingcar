@@ -26,11 +26,11 @@ class Car {
     }
   }
 
-  getName() {
-    return this.#name;
-  }
-  getPosition() {
-    return this.#position;
+  getStatus() {
+    return {
+      name: this.#name,
+      position: this.#position,
+    };
   }
 
   move(numberGenerator) {
