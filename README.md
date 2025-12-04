@@ -187,4 +187,6 @@ Car 객체는 새로운 객체를 반환함으로써 외부 수정으로부터 �
 ## 목표
 
 - [ ] 이동 전략 주입에 함수 대신 객체 사용하기 (이동 전략이 복잡해질 경우를 대비)
+  - [일급 컬렉션 (First Class Collection)의 소개와 써야할 이유](https://jojoldu.tistory.com/412)
 - [ ] Cars 일급 콜랙션 사용하여 Race에서 자동차 이동 책임 분리하기
+  - [전략 패턴](https://refactoring.guru/ko/design-patterns/strategy)
