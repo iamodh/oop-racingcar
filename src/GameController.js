@@ -1,8 +1,8 @@
 import Car from './Car.js';
-import Cars from './Cars.js';
 import { CarError } from './errors/CarError.js';
-import { CarsError } from './errors/CarsError.js';
 import { InputError } from './errors/InputError.js';
+import { RaceError } from './errors/RaceError.js';
+import Race from './Race.js';
 
 class GameController {
   #inputView;
@@ -21,21 +21,18 @@ class GameController {
         const carNames = await this.#inputView.getCarNames();
         const trialCount = await this.#inputView.getTrialCount();
 
-        const cars = new Cars(carNames.map((name) => new Car(name)));
+        const cars = carNames.map((name) => new Car(name));
+        const race = new Race(cars, trialCount);
 
-        this.#outputView.printResultHeader();
-        for (let i = 0; i < trialCount; i++) {
-          cars.moveAll(this.#numberGenerator);
-          this.#outputView.printRoundResult(cars.getCars());
-        }
-
-        const winners = cars.calculateWinners();
+        const results = race.start(this.#numberGenerator);
+        this.#outputView.printRaceResult(results);
+        const winners = race.calculateWinners();
         this.#outputView.printWinners(winners);
         return;
       } catch (error) {
         if (
           error instanceof InputError ||
-          error instanceof CarsError ||
+          error instanceof RaceError ||
           error instanceof CarError
         ) {
           this.#outputView.printErrorMessage(error.message);
