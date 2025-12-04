@@ -1,4 +1,3 @@
-import Car from './Car.js';
 import {
   RaceCarsCountError,
   RaceCarsDuplicateError,
@@ -32,7 +31,7 @@ class Race {
     }
   }
 
-  start(moveStrategy = Car.defaultMoveStrategy) {
+  start(moveStrategy) {
     const results = [];
     for (let i = 0; i < this.#trialCount; i++) {
       this.#moveAllCars(moveStrategy);
@@ -46,8 +45,7 @@ class Race {
 
   #moveAllCars(moveStrategy) {
     this.#cars.forEach((car) => {
-      const shouldMove = moveStrategy();
-      if (shouldMove) car.move();
+      car.move(moveStrategy);
     });
   }
 

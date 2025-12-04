@@ -19,8 +19,9 @@ describe('자동차', () => {
   test('자동차의 위치를 이동한다.', () => {
     const carName = 'pobi';
     const car = new Car(carName);
+    const alwaysMoveStrategy = () => true;
+    car.move(alwaysMoveStrategy);
 
-    car.move();
     expect(car.getStatus().position).toBe(1);
   });
 });

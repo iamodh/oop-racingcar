@@ -38,8 +38,11 @@ class Car {
     };
   }
 
-  move() {
-    this.#position += Car.MOVEMENT.DISTANCE;
+  move(strategy = Car.defaultMoveStrategy) {
+    const isMovable = strategy();
+    if (isMovable) {
+      this.#position += Car.MOVEMENT.DISTANCE;
+    }
   }
 }
 

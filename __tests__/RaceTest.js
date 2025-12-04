@@ -28,7 +28,8 @@ describe('경주 테스트', () => {
     const pobi = new Car('pobi');
     const crong = new Car('crong');
 
-    pobi.move();
+    const alwaysMoveStrategy = () => true;
+    pobi.move(alwaysMoveStrategy);
     const race = new Race([pobi, crong], 1);
 
     const winners = race.calculateWinners();
