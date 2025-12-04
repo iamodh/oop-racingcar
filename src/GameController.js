@@ -9,10 +9,9 @@ class GameController {
   #outputView;
   #numberGenerator;
 
-  constructor(inputView, outputView, numberGenerator) {
+  constructor(inputView, outputView) {
     this.#inputView = inputView;
     this.#outputView = outputView;
-    this.#numberGenerator = numberGenerator;
   }
 
   async play() {
@@ -24,7 +23,7 @@ class GameController {
         const cars = carNames.map((name) => new Car(name));
         const race = new Race(cars, trialCount);
 
-        const results = race.start(this.#numberGenerator);
+        const results = race.start();
         this.#outputView.printRaceResult(results);
         const winners = race.calculateWinners();
         this.#outputView.printWinners(winners);

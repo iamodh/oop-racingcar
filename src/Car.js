@@ -1,11 +1,16 @@
+import { Random } from '@woowacourse/mission-utils';
 import { CarNameLengthError } from './errors/CarError.js';
 
 class Car {
   #name;
   #position;
   static NAME_LENGTH = { MIN: 1, MAX: 5 };
-  static MIN_NUMBER_TO_MOVE = 4;
-  static MOVEMENT_DISTANCE = 1;
+  static MOVEMENT = {
+    THRESHOLD: 4,
+    DISTANCE: 1,
+  };
+  static defaultMoveStrategy = () =>
+    Random.pickNumberInRange(0, 9) >= Car.MOVEMENT.THRESHOLD;
 
   constructor(name) {
     this.#validateName(name);
@@ -33,11 +38,8 @@ class Car {
     };
   }
 
-  move(numberGenerator) {
-    const number = numberGenerator.generate();
-    if (number >= Car.MIN_NUMBER_TO_MOVE) {
-      this.#position += Car.MOVEMENT_DISTANCE;
-    }
+  move() {
+    this.#position += Car.MOVEMENT.DISTANCE;
   }
 }
 

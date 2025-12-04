@@ -1,3 +1,4 @@
+import Car from './Car.js';
 import {
   RaceCarsCountError,
   RaceCarsDuplicateError,
@@ -31,10 +32,10 @@ class Race {
     }
   }
 
-  start(numberGenerator) {
+  start(moveStrategy = Car.defaultMoveStrategy) {
     const results = [];
     for (let i = 0; i < this.#trialCount; i++) {
-      this.#moveAllCars(numberGenerator);
+      this.#moveAllCars(moveStrategy);
 
       const roundResult = this.#cars.map((car) => car.getStatus());
       results.push(roundResult);
@@ -43,8 +44,11 @@ class Race {
     return results;
   }
 
-  #moveAllCars(numberGenerator) {
-    this.#cars.forEach((car) => car.move(numberGenerator));
+  #moveAllCars(moveStrategy) {
+    this.#cars.forEach((car) => {
+      const shouldMove = moveStrategy();
+      if (shouldMove) car.move();
+    });
   }
 
   calculateWinners() {

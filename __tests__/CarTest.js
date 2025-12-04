@@ -16,24 +16,11 @@ describe('자동차', () => {
     expect(car.getStatus().position).toBe(0);
   });
 
-  test('숫자가 4 미만인 경우 움직이지 않는다.', () => {
+  test('자동차의 위치를 이동한다.', () => {
     const carName = 'pobi';
     const car = new Car(carName);
 
-    const number = 3;
-    const mockGenerator = { generate: () => number };
-
-    car.move(mockGenerator);
-    expect(car.getStatus().position).toBe(0);
-  });
-  test('숫자가 4 이상인 경우 한 칸 전진한다.', () => {
-    const carName = 'pobi';
-    const car = new Car(carName);
-
-    const number = 4;
-    const mockGenerator = { generate: () => number };
-
-    car.move(mockGenerator);
+    car.move();
     expect(car.getStatus().position).toBe(1);
   });
 });

@@ -15,11 +15,9 @@ describe('경주 테스트', () => {
     const cars = [new Car('pobi')];
     const race = new Race(cars, 2);
 
-    const mockGenerator = {
-      generate: () => 4,
-    };
+    const alwaysMoveStrategy = () => true;
 
-    const results = race.start(mockGenerator);
+    const results = race.start(alwaysMoveStrategy);
     const firstRoundResult = results[0];
     const secondRoundResult = results[1];
     expect(firstRoundResult[0].position).toBe(1);
@@ -30,11 +28,7 @@ describe('경주 테스트', () => {
     const pobi = new Car('pobi');
     const crong = new Car('crong');
 
-    const mockGenerator = {
-      generate: () => 4,
-    };
-
-    pobi.move(mockGenerator);
+    pobi.move();
     const race = new Race([pobi, crong], 1);
 
     const winners = race.calculateWinners();
